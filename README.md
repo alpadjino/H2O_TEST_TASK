@@ -1,54 +1,70 @@
-# React + TypeScript + Vite
+# Тестовое задание от H2O
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Проект представляет собой визуализацию с линейной диаграммной и проблемными зонами.
 
-Currently, two official plugins are available:
+## Дизайн макет
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+[Ссылка на макет в Figma](https://www.figma.com/file/s8w0iwVY2jkaP7EwXiMWLC/Untitled?node-id=0%3A1&t=dKP6UUhiN6qXAH2e-1)
 
-## Expanding the ESLint configuration
+## Генерация данных
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Данные генерируются случайным образом в формате JSON:
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
+```json
+{
+  "data": [
+    {
+      "division": "B2B",
+      "date": "2023-09-25T05:00:00.000+00:00",
+      "amount": "20000",
+      "type": "expanses"
     },
-  },
-})
+    {
+      "division": "B2C",
+      "date": "2023-09-24T05:00:00.000+00:00",
+      "amount": "14000",
+      "type": "income"
+    }
+  ]
+}
 ```
+Где type - это тип денежной операции
+- expanses: затраты,
+- income: прибыль,
+- revenue: выручка,
+- debt: задолженность    
+---  
+**График**
+- Навигационные панели и стили
+- Проблемные зоны
+-Анимация
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+# Используемые технологии
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+**Основные:** React, Typescript, RTKQuery, React Router  
+**Сборщик:** Vite  
+**Стили:** TailwindCSS  
+**Доп. утилиты:** date-fns  
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+Для имитации сервера использовался **json-server + faker-js**
+
+# Как запустить проект
+
+- Стянуть с гита проект
+- Подтянуть зависимости через: 
+```bash 
+npm i
+```
+- Зайти в папку server: 
+```bash 
+cd server
+``` 
+и установить зависимости для сервера
+- запустить фронтенд из корневой папки: 
+```bash
+npm run dev
+```
+- запустить сервер из папки server: 
+```bash
+npm run start
 ```
