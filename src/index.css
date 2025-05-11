@@ -1,0 +1,83 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: 'Proxima Nova';
+  src: url('/fonts/proximanova_regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Proxima Nova';
+  src: url('/fonts/proximanova_bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Proxima Nova';
+  src: url('/fonts/proximanova_light.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Proxima Nova';
+  src: url('/fonts/proximanova_extrabold.otf') format('opentype');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Proxima Nova';
+  src: url('/fonts/proximanova_black.otf') format('opentype'),
+       url('/fonts/proximanova_black.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Proxima Nova';
+  src: url('/fonts/proximanova_boldit.otf') format('opentype');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Proxima Nova';
+  src: url('/fonts/proximanova_blackit.otf') format('opentype');
+  font-weight: 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+@theme {
+  --font-display: "Proxima Nova", "Satoshi", sans-serif;
+  
+  --color-moderate-cyan: rgba(84, 211, 194, 1);
+  --color-dark-moderate-cyan: rgba(48, 137, 138, 1);
+  --color-very-light-gray: oklch(248, 248, 248, 1);
+  --color-soft-red: rgba(252, 92, 101, 1);
+  --color-bright-orange-yellow: rgba(247, 183, 49, 1);
+  --color-dark-grayish-blue: rgba(109, 121, 134, 1);
+  --color-very-dark-grayish-blue: rgba(50, 63, 71, 1);
+  --color-soft-violet: rgba(172, 116, 252, 1);
+  --color-bright-yellow: rgba(245, 226, 48, 1);
+  --color-moderate-blue: rgba(69, 170, 242, 1);
+  --color-bright-cyan: rgba(48, 199, 220, 1);
+  --color-soft-green: rgba(115, 207, 122, 1);
+  --color-very-soft-cyan:rgba(169, 233, 224, 1);
+  --color-light-gray :rgba(210, 209, 209, 1)
+}
+
+@utility scrollbar-hidden {
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}

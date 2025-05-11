@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "useDefineForClassFields": true,
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "allowJs": false,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+    "baseUrl": ".",
+    "paths": {
+      "@assets/*": ["src/assets/*"],
+      "@ui/*": ["src/shared/ui/*"],
+      "@business/*": ["src/shared/business/*"],
+      "@api/*": ["src/api/*"],
+      "@pages/*": ["src/pages/*"]
+    },
+    "types": ["node", "vite/client"]
+  },
+  "include": ["src"],
+  "exclude": ["node_modules"]
+}

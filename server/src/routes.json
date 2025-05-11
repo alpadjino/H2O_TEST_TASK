@@ -1,0 +1,5 @@
+{
+  "/api/data": "/data",
+  "/api/data/b2b": "/data?division=B2B",
+  "/api/data/b2c": "/data?division=B2C"
+}
