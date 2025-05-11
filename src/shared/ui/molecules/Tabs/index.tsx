@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { Link, useNavigate } from 'react-router';
+import { Link, useLocation, useNavigate } from 'react-router';
 
 import { ArrowDownIcon } from "@ui/atoms/Icons/ArrowDown";
 
@@ -16,14 +16,13 @@ interface ITabs {
 };
 
 const Tabs = ({ tabs }: ITabs) => {
-  const [activeTab, setActiveTab] = useState<number>(1);
+  const { pathname } = useLocation();
   const navigate =  useNavigate()
 
   const tabRefs = useRef<(HTMLAnchorElement | null)[]>([]);
 
   const handleTabClick = (index: number) => {
     navigate(tabs[index].link);
-    setActiveTab(index);
     const node = tabRefs.current[index];
     if (node) {
       node.scrollIntoView({
@@ -35,13 +34,40 @@ const Tabs = ({ tabs }: ITabs) => {
   };
 
   const handlePrev = () => {
-    const newIndex = activeTab > 0 ? activeTab - 1 : tabs.length - 1;
-    handleTabClick(newIndex);
+    const currentIndex = tabs.findIndex((tab) => tab.link === pathname);
+    const newIndex = currentIndex === 0 ? tabs.length - 1 : currentIndex - 1;
+
+    navigate(tabs[newIndex].link);
+
+    // Используем setTimeout, чтобы дождаться обновления DOM после навигации
+    setTimeout(() => {
+      const newNode = tabRefs.current[newIndex];
+      if (newNode) {
+        newNode.scrollIntoView({
+          behavior: "smooth",
+          inline: "center",
+          block: "nearest",
+        });
+      }
+    }, 0);
   };
 
   const handleNext = () => {
-    const newIndex = (activeTab + 1) % tabs.length;
-    handleTabClick(newIndex);
+    const currentIndex = tabs.findIndex((tab) => tab.link === pathname);
+    const newIndex = currentIndex === tabs.length - 1 ? 0 : currentIndex + 1;
+
+    navigate(tabs[newIndex].link);
+
+    setTimeout(() => {
+      const newNode = tabRefs.current[newIndex];
+      if (newNode) {
+        newNode.scrollIntoView({
+          behavior: "smooth",
+          inline: "center",
+          block: "nearest",
+        });
+      }
+    }, 0);
   };
 
   const tabClassname = (isSelected: boolean) => {
@@ -72,7 +98,7 @@ const Tabs = ({ tabs }: ITabs) => {
           <div className="relative">
             <div className="flex border-b border-gray-200 gap-3">
               {tabs.map((tab, index) => (
-                <nav>
+                <nav key={index}>
                   <Link
                     key={index}
                     to={tab.link}
@@ -80,14 +106,14 @@ const Tabs = ({ tabs }: ITabs) => {
                       tabRefs.current[index] = el;
                     }}
                     onClick={() => handleTabClick(index)}
-                    className={tabClassname(activeTab === index)}
-                    aria-selected={activeTab === index}
+                    className={tabClassname(tab.link === pathname)}
+                    aria-selected={tab.link === pathname}
                     role="tab"
                     >
                     {tab.title}
                     <span
                       className={`absolute left-0 -bottom-[2px] h-[4px] bg-[#54D3C2] transition-all duration-300 ease-in-out origin-left ${
-                        activeTab === index ? "w-full scale-x-100 opacity-100" : "w-full scale-x-0 opacity-0"
+                        tab.link === pathname ? "w-full scale-x-100 opacity-100" : "w-full scale-x-0 opacity-0"
                       }`}
                     />
                   </Link>

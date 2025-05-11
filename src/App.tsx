@@ -70,6 +70,7 @@ const App: React.FC = () => {
 
       <Routes>
         <Route path="reports" element={<Report />}>
+          <Route index element={<Navigate to={"company"} />} />
           <Route path="company" element={<ReportCompany />} />
           <Route path="employees" element={<div>Свод данных по сотрудникам</div>} />
           <Route path="deals" element={<div>Сводный отчет по сделкам</div>} />

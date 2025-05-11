@@ -77,7 +77,6 @@ export const ProblemZones = () => {
 
   useEffect(() => {
     const expanses = dots.find((dot) => dot.dataKey === "Затраты");
-    console.log("expanses", expanses);
     if (typeof expanses?.value === "number" && expanses?.value !== 0) {
       const number = expanses.value;
       const expansesArray = splitNumberIntoCategories(number);
